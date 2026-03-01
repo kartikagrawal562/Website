@@ -7,6 +7,8 @@
     <title>Swaminarayan University | Home</title>
 
     <style>
+
+
  /* ================= PREMIUM TOP BAR ================= */
 
 .topbar {
@@ -272,33 +274,44 @@
 }
 
 /* ================= PROFESSIONAL FACULTY SLIDER ================= */
+/* ================= PROFESSIONAL FACULTY SLIDER ================= */
+
 .slider-wrapper {
     position: relative;
-    display: flex;
-    align-items: center; /* Vertically centers the buttons to the rows */
-    padding: 0 60px;
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 60px;
 }
 
 .slider-viewport {
     overflow: hidden;
     width: 100%;
-    padding: 20px 0;
 }
 
 .faculties-container {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    /* Height calculation: (Card Height 260px * 2) + Gap 30px */
-    height: 750px; 
     gap: 30px;
-    width: max-content;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s ease;
 }
 
-/* ================= PRESTIGE FACULTY SECTION ================= */
+/* Desktop - 4 Cards */
+.faculty-card {
+    flex: 0 0 calc(25% - 22.5px);
+}
+
+/* Tablet - 2 Cards */
+@media (max-width: 992px) {
+    .faculty-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+/* Mobile - 1 Card */
+@media (max-width: 576px) {
+    .faculty-card {
+        flex: 0 0 100%;
+    }
+}
 .faculties-section {
     padding: 100px 5%;
     background: radial-gradient(circle at top, #ffffff 0%, #f8fafc 100%);
@@ -327,10 +340,10 @@
 }
 
 
-.faculty-card {
-    width: 260px;  /* Uniform width */
+ .faculty-card {
+    width: 225px;  /* Uniform width */
     height: 360px; /* Uniform height */
-    background: white;
+    background: rgb(246, 247, 248);
     padding: 30px 20px;
     border-radius: 20px;
     display: flex;
@@ -340,13 +353,8 @@
     text-decoration: none; /* Remove underline from <a> */
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
-    border: 1px solid #edf2f7;
-}
+    border: 1px solid #edf2f7; 
 
-.faculty-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border-color: #f59e0b;
 }
 
 .faculty-card h3 {
@@ -383,70 +391,94 @@
 
 .prev { left: 0; }
 .next { right: 0; }
-  /* ================= OUR PROGRAMS SECTION ================= */
 
+.faculty-icon {
+    width: 120px;
+    height: 120px;
+    margin: 30px auto;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.4);
+
+    font-size: 45px;
+   background: rgb(246, 247, 248);
+
+    transition: 0.4s ease;
+}
+
+ .faculty-card:hover .faculty-icon {
+    transform: scale(1.15) rotate(8deg);
+    background: linear-gradient(135deg,#1e3a8a,#f59e0b);
+    color: #fff;
+}
+
+
+/* ================= OUR PROGRAMS ================= */
 .programs-section {
-    padding: 80px 5%;
-    background: #f1f3f6;
+    padding: 100px 5%;
+    background: #f8fafc;
     text-align: center;
 }
 
-.programs-title {
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #f59e0b;
+.program-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e3a8a;
     margin-bottom: 40px;
+    letter-spacing: 2px;
 }
 
+/* TABS */
 .program-tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 15px;
     background: #e5e7eb;
     padding: 10px;
-    border-radius: 15px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
+    border-radius: 50px;
+    margin-bottom: 60px;
 }
 
-.program-tab {
-    flex: 1;
-    padding: 12px 0;
+.tab {
+    padding: 12px 30px;
+    border: none;
+    background: transparent;
     font-weight: 600;
-    color: #1f2937;
-    border-radius: 10px;
     cursor: pointer;
+    border-radius: 50px;
     transition: 0.3s;
 }
 
-.program-tab.active {
+.tab.active {
     background: #f59e0b;
     color: white;
 }
 
-.program-tab:hover {
-    background: #fbbf24;
+.tab:hover {
+    background: #1e3a8a;
     color: white;
 }
 
-/* PROGRAM CARDS */
-
-.program-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-}
-
+/* CARD */
 .program-card {
-    background: #e5e7eb;
-    padding: 50px 20px;
-    border-radius: 40px;
-    transition: 0.3s;
+    flex: 0 0 calc(25% - 22.5px); /* 4 cards per row */
+    height: 200px;
+    background: white;
+    border-radius: 30px;
+    padding: 30px 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    transition: 0.4s;
 }
-
-.program-card img {
-    width: 90px;
-    margin-bottom: 25px;
+.program-card i {
+    font-size: 50px;
+    color: #f59e0b;
+    margin-bottom: 20px;
 }
 
 .program-card h3 {
@@ -456,22 +488,76 @@
 }
 
 .program-card:hover {
-    background: white;
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
+
+/* Hide/Show Content */
 .program-content {
     display: none;
-    animation: fadeIn 0.4s ease;
 }
 
 .program-content.active {
     display: block;
 }
+.program-slider {
+    overflow: hidden;
+}
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.program-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.program-slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+.program-row {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease;
+}
+
+/* 4 cards desktop */
+.program-card {
+    flex: 0 0 calc(25% - 22.5px);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .program-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .program-card {
+        flex: 0 0 100%;
+    }
+}
+
+/* Arrows */
+.arrow {
+    position: absolute;
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.left { left: -20px; }
+.right { right: -20px; }
+
+.arrow:hover {
+    background: #f59e0b;
 }
 /* ================= FOOTER STYLE ================= */
 
@@ -778,11 +864,11 @@ nav {
             <i class="fab fa-facebook-f"></i>
         </a>
 
-        <a href="#" class="social-icon">
+        <a href="https://www.instagram.com/swaminarayan_university?igsh=MWhlYTR1eG84cGo4dw==" class="social-icon">
             <i class="fab fa-instagram"></i>
         </a>
 
-        <a href="#" class="social-icon">
+        <a href="https://youtube.com/@swaminarayanuniversity7767?si=kA9QrT0Q2tl3cTHu" class="social-icon">
             <i class="fab fa-youtube"></i>
         </a>
     </div>
@@ -873,59 +959,59 @@ nav {
         <div class="slider-viewport">
             <div class="faculties-container" id="facultySlider">
                 <a href="#" class="faculty-card">
-                    <img src="1.png" alt="Engineering">
+                    <div class="faculty-icon"><i class="fas fa-gears"></i></div>
                     <h3>Faculty of Engineering</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="2.png" alt="Commerce">
+                   <div class="faculty-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Faculty of Commerce and Management</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="3.png" alt="Law">
+                    <div class="faculty-icon"><i class="fas fa-scale-balanced"></i></div>
                     <h3>Faculty of Law</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="4.png" alt="IT">
+                   <div class="faculty-icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>Faculty of IT & Computer Science</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="5.png" alt="Pharmacy">
+                     <div class="faculty-icon"><i class="fas fa-pills"></i></div>
                     <h3>Faculty of Pharmacy</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="6.png" alt="Design">
+                    <div class="faculty-icon"><i class="fas fa-pen-ruler"></i></div>
                     <h3>Faculty of Design</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="7.png" alt="Arts">
+                    <div class="faculty-icon"><i class="fas fa-book-open"></i></div>
                     <h3>Faculty of Arts & Humanities</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="8.png" alt="Education">
+                     <div class="faculty-icon"><i class="fas fa-graduation-cap"></i></div>
                     <h3>Faculty of Education</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="9.png" alt="Medicine">
+                 <div class="faculty-icon"><i class="fas fa-stethoscope"></i></div>
                     <h3>Faculty of Medicine</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="10.png" alt="Science">
+                    <div class="faculty-icon"><i class="fas fa-flask"></i></div>
                     <h3>Faculty of Science</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="11.png" alt="Homeopathy">
+                     <div class="faculty-icon"><i class="fas fa-leaf"></i></div>
                     <h3>Faculty of Homeopathy</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="12.png" alt="Nursing">
+                   <div class="faculty-icon"><i class="fas fa-user-nurse"></i></div>
                     <h3>Faculty of Nursing</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="13.png" alt="Ayurvedic">
+                   <div class="faculty-icon"><i class="fas fa-spa"></i></div>
                     <h3>Faculty of Ayurvedic</h3>
                 </a>
                 <a href="#" class="faculty-card">
-                    <img src="14.png" alt="Physiotherapy">
+                   <div class="faculty-icon"><i class="fas fa-hand-holding-medical"></i></div>
                     <h3>Faculty of Physiotherapy</h3>
                 </a>
             </div>
@@ -940,79 +1026,249 @@ nav {
 <!-- ================= OUR PROGRAMS ================= -->
 <section class="programs-section">
 
-    <h2 class="programs-title">OUR PROGRAMS</h2>
+    <h2 class="program-title">OUR PROGRAMS</h2>
 
+    <!-- Top Tabs -->
     <div class="program-tabs">
-        <div class="program-tab active" data-tab="diploma">Diploma</div>
-        <div class="program-tab" data-tab="ug">Undergraduate</div>
-        <div class="program-tab" data-tab="pg">Postgraduate</div>
-        <div class="program-tab" data-tab="certificate">Certificate</div>
-        <div class="program-tab" data-tab="phd">Ph.D.</div>
+        <button class="tab active" onclick="showProgram('diploma', this)">Diploma</button>
+        <button class="tab" onclick="showProgram('ug', this)">Undergraduate</button>
+        <button class="tab" onclick="showProgram('pg', this)">Postgraduate</button>
+        <button class="tab" onclick="showProgram('Certificate', this)">Certificate</button>
+        <button class="tab" onclick="showProgram('phd', this)">Ph.D.</button>
     </div>
 
-    <!-- PROGRAM CONTENT -->
+    <!-- Diploma Programs -->
     <div class="program-content active" id="diploma">
-        <div class="program-container">
+        <div class="program-row">
             <div class="program-card">
-                <img src="diploma1.png">
-                <h3>Diploma in Engineering</h3>
+                <i class="fas fa-gears"></i>
+                <h3>Engineering</h3>
             </div>
+
             <div class="program-card">
-                <img src="diploma2.png">
-                <h3>Diploma in Pharmacy</h3>
+               <i class="fas fa-pills"></i>
+                <h3>Pharmacy</h3>
             </div>
-        </div>
+
+            <div class="program-card">
+               <i class="fas fa-user-nurse"></i>
+                <h3>Nursing</h3>
+            </div>
+         </div>
     </div>
 
-    <div class="program-content" id="ug">
-        <div class="program-container">
-            <div class="program-card">
-                <img src="ug1.png">
-                <h3>B.Tech</h3>
-            </div>
-            <div class="program-card">
-                <img src="ug2.png">
-                <h3>BBA</h3>
-            </div>
-        </div>
-    </div>
+    <!-- UG Programs -->
+   <div class="program-content" id="ug">
+    <div class="program-slider-wrapper">
 
-    <div class="program-content" id="pg">
-        <div class="program-container">
-            <div class="program-card">
-                <img src="pg1.png">
-                <h3>M.Tech</h3>
-            </div>
-            <div class="program-card">
-                <img src="pg2.png">
-                <h3>MBA</h3>
-            </div>
-        </div>
-    </div>
+        <button class="arrow left" onclick="slideCards('ug', -1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
 
-    <div class="program-content" id="certificate">
-        <div class="program-container">
+        <div class="program-slider">
+            <div class="program-row" id="ug-row">
             <div class="program-card">
-                <img src="therapy.png">
+               <i class="fas fa-gears"></i>
+                <h3>Engineering</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-flask-vial"></i>
+                <h3>Science</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-flask-vial"></i>
+                <h3>Commerce and Management</h3>
+            </div>
+
+            <div class="program-card">
+               <i class="fas fa-user-nurse"></i>
+                <h3>Nursing</h3>
+            </div>
+              <div class="program-card">
+              <i class="fas fa-stethoscope"></i>
+                <h3>MBBS</h3>
+            </div>
+
+            <div class="program-card">
+              <i class="fas fa-leaf"></i>
+                <h3>Ayurveda</h3>
+            </div>
+              <div class="program-card">
+               <i class="fas fa-mortar-pestle"></i>
+                <h3>Homeopathy</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-pills"></i>
+                <h3>Pharmacy</h3>
+            </div>
+              <div class="program-card">
+               <i class="fas fa-scale-balanced"></i>
+                <h3>Law</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-palette"></i>
+                <h3>Arts</h3>
+            </div>
+              <div class="program-card">
+              <i class="fas fa-laptop-code"></i>
+                <h3>IT & CS</h3>
+            </div>
+
+            <div class="program-card">
+                 <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Education</h3>
+            </div>
+              <div class="program-card">
+               <i class="fas fa-hand-holding-medical"></i>
+                <h3>Physiotherapy</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-pen-ruler"></i>
+                <h3>Design and Communication</h3>
+            </div>
+
+       </div>
+        </div>
+
+        <button class="arrow right" onclick="slideCards('ug', 1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+    </div>
+</div>
+    <!-- PG Programs -->
+ <div class="program-content" id="pg">
+    <div class="program-slider-wrapper">
+
+        <button class="arrow left" onclick="slideCards('pg', -1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="program-slider">
+            <div class="program-row" id="pg-row">
+            <div class="program-card">
+                <i class="fas fa-gears"></i>
+                <h3>Engineering</h3>
+            </div>
+
+            <div class="program-card">
+               <i class="fas fa-gears"></i>
+                <h3>Nursing</h3>
+            </div>
+              <div class="program-card">
+              <i class="fas fa-chart-line"></i>
+                <h3>Commerce and Management</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-stethoscope"></i>
+                <h3>MBBS</h3>
+            </div>
+              <div class="program-card">
+               <i class="fas fa-pills"></i>
+                <h3>Pharmacy</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-scale-balanced"></i>
+                <h3>Law</h3>
+            </div>
+              <div class="program-card">
+                <i class="fas fa-scale-balanced"></i>
+                <h3>Arts and Humanities</h3>
+            </div>
+
+            <div class="program-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>IT</h3>
+            </div>
+      </div>
+        </div>
+
+        <button class="arrow right" onclick="slideCards('pg', 1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+    </div>
+</div>
+    <!-- Certificate Programs -->
+      <div class="program-content" id="Certificate">
+        <div class="program-row">
+            <div class="program-card">
+                 <i class="fas fa-spa"></i>
                 <h3>Panchkarma Therapist</h3>
             </div>
-            <div class="program-card">
-                <img src="yoga.png">
+             <div class="program-card">
+                 <i class="fas fa-person-praying"></i>
                 <h3>Yoga</h3>
             </div>
         </div>
     </div>
 
-    <div class="program-content" id="phd">
-        <div class="program-container">
-            <div class="program-card">
-                <img src="phd1.png">
-                <h3>Ph.D. in Engineering</h3>
-            </div>
-        </div>
-    </div>
+    <!-- PhD Programs -->
+<div class="program-content" id="phd">
+    <div class="program-slider-wrapper">
 
+        <button class="arrow left" onclick="slideCards('phd', -1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="program-slider">
+            <div class="program-row" id="phd-row">
+            <div class="program-card">
+                <i class="fas fa-gears"></i>
+                <h3>Engineering</h3>
+            </div>
+             <div class="program-card">
+               <i class="fas fa-book-open-reader"></i>
+                <h3>Arts and Humanities</h3>
+            </div>
+             <div class="program-card">
+                 <i class="fas fa-pills"></i>
+                <h3>Pharmacy</h3>
+            </div>
+             <div class="program-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>IT & CS</h3>
+            </div>
+             <div class="program-card">
+                <i class="fas fa-user-nurse"></i>
+                <h3>Nursing</h3>
+            </div> <div class="program-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Education</h3>
+            </div>
+             <div class="program-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Ayurveda</h3>
+            </div> <div class="program-card">
+               <i class="fas fa-microscope"></i>
+                <h3>Science</h3>
+            </div>
+             <div class="program-card">
+               <i class="fas fa-mortar-pestle"></i>
+                <h3>Homeopathy</h3>
+            </div> <div class="program-card">
+               <i class="fas fa-stethoscope"></i>
+                <h3>Medicine</h3>
+            </div>
+    </div>
+        </div>
+
+        <button class="arrow right" onclick="slideCards('phd', 1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+    </div>
+</div>
 </section>
+
+<!-- ================= ENGINEERING SECTION ================= -->
 
 <section class="engineering-section">
 
@@ -1139,26 +1395,77 @@ tabs.forEach(tab => {
         selected.classList.add('active');
     });
 });
+/* ================= FACULTY SLIDER FUNCTIONALITY ================= */
+/* ================= FACULTY SLIDER ================= */
 
-let currentOffset = 0;
-const facultySlider = document.getElementById('facultySlider');
+let facultyPosition = 0;
 
 function moveSlider(direction) {
-    const cardTotalWidth = 290; // Card width (260) + gap (30)
-    const viewport = document.querySelector('.slider-viewport');
-    const maxScroll = facultySlider.offsetWidth - viewport.offsetWidth;
 
-    // direction: 1 for next, -1 for prev
-    currentOffset += (direction * cardTotalWidth);
+    const row = document.getElementById("facultySlider");
+    const cards = row.querySelectorAll(".faculty-card");
 
-    // Constrain the slider
-    if (currentOffset < 0) {
-        currentOffset = 0;
-    } else if (currentOffset > maxScroll) {
-        currentOffset = maxScroll;
-    }
+    const cardWidth = cards[0].offsetWidth + 30;
 
-    facultySlider.style.transform = `translateX(-${currentOffset}px)`;
+    const visibleCards =
+        window.innerWidth > 992 ? 4 :
+        window.innerWidth > 576 ? 2 : 1;
+
+    const maxIndex = cards.length - visibleCards;
+
+    facultyPosition += direction;
+
+    if (facultyPosition < 0) facultyPosition = 0;
+    if (facultyPosition > maxIndex) facultyPosition = maxIndex;
+
+    row.style.transform =
+        `translateX(-${facultyPosition * cardWidth}px)`;
+}
+/* Program Functionality */
+function showProgram(id, el) {
+
+    document.querySelectorAll('.program-content')
+        .forEach(content => content.classList.remove('active'));
+
+    document.querySelectorAll('.tab')
+        .forEach(tab => tab.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+}
+/* ================= PROGRAM SLIDER STATE ================= */
+let sliderPositions = {
+    ug: 0,
+    pg: 0,
+    phd: 0
+}
+
+function slideCards(sectionId, direction) {
+
+    const row = document.getElementById(sectionId + "-row");
+    if (!row) return;
+
+    const cards = row.querySelectorAll('.program-card');
+    if (!cards.length) return;
+
+    const cardWidth = cards[0].offsetWidth + 30;
+
+    const visibleCards =
+        window.innerWidth > 992 ? 4 :
+        window.innerWidth > 576 ? 2 : 1;
+
+    const maxIndex = Math.max(0, cards.length - visibleCards);
+
+    sliderPositions[sectionId] += direction;
+
+    if (sliderPositions[sectionId] < 0)
+        sliderPositions[sectionId] = 0;
+
+    if (sliderPositions[sectionId] > maxIndex)
+        sliderPositions[sectionId] = maxIndex;
+
+    row.style.transform =
+        `translateX(-${sliderPositions[sectionId] * cardWidth}px)`;
 }
 </script>
 
