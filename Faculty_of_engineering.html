@@ -232,122 +232,142 @@
 /* ================= ABOUT ENGINEERING SECTION ================= */
 
 .about-engineering {
-    padding: 80px 5%;
+    padding: 100px 5%;
     background: #ffffff;
 }
 
+/* GRID LAYOUT */
 .about-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.3fr 1.1fr;
     align-items: center;
-    gap: 80px;
-    flex-wrap: wrap;
+    gap: 100px;
 }
 
 .about-text {
-    flex: 1;
     min-width: 320px;
 }
 
-
+/* HEADING */
 .about-text h2 {
-    font-size: 32px;
+    font-size: 34px;
     color: #0b2d5c;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     position: relative;
+    letter-spacing: 1px;
 }
 
 .about-text h2::after {
     content: "";
-    width: 70px;
+    width: 90px;
     height: 4px;
     background: #f59e0b;
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 0;
 }
 
 .about-text p {
     font-size: 17px;
-    line-height: 1.8;
+    line-height: 1.9;
     color: #475569;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
-/* VIDEO BOX */
-
+/* VIDEO SECTION */
 .about-video {
-    flex: 1.3;   /* Increased video width */
     min-width: 320px;
 }
 
+/* HERO STYLE VIDEO BOX */
 .video-box {
     position: relative;
     width: 100%;
-    height: 420px;   /* Increased height */
-    border-radius: 30px;
+    height: 300px;  /* Bigger like screenshot */
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-    transition: 0.4s ease;
+   transition: 0.4s ease;
+
+    /* Big Smooth Rounded Corners */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
 }
 
 .video-box:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
 }
 
+/* IMAGE */
 .video-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 30px;
-    filter: brightness(70%);
+    filter: brightness(75%);
 }
+
+/* DARK OVERLAY */
+.video-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+}
+
+/* PLAY BUTTON */
 .play-btn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 130px;
     background: #f59e0b;
     color: white;
-    font-size: 40px;
+    font-size: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    transition: 0.3s;
+    z-index: 2;
+
+    box-shadow: 0 0 0 20px rgba(245,158,11,0.25),
+                0 20px 40px rgba(0,0,0,0.4);
+
+    transition: 0.3s ease;
 }
 
 .play-btn:hover {
     background: #0b2d5c;
+    box-shadow: 0 0 0 25px rgba(11,45,92,0.3);
 }
-
 @media (max-width: 992px) {
     .about-container {
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .about-video {
-        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 60px;
     }
 
     .video-box {
-        height: 350px;
+        height: 380px;
+        border-radius: 40px;
     }
 }
 
 @media (max-width: 600px) {
+    .about-engineering {
+        padding: 60px 5%;
+    }
+
     .video-box {
         height: 250px;
-        border-radius: 20px;
+        border-radius: 25px;
     }
 
     .play-btn {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
         font-size: 28px;
     }
 }
