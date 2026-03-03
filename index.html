@@ -129,6 +129,9 @@
         display: none;
     }
 }
+
+
+
         * {
             margin: 0;
             padding: 0;
@@ -140,6 +143,8 @@
             background-color: #f0f2f5;
             min-height: 100vh;
         }
+
+
 
         /* ---------------- NAVBAR ---------------- */
         nav {
@@ -273,7 +278,12 @@
     letter-spacing: 1px;
 }
 
-/* ================= PROFESSIONAL FACULTY SLIDER ================= */
+
+
+
+
+
+
 /* ================= PROFESSIONAL FACULTY SLIDER ================= */
 
 .slider-wrapper {
@@ -418,6 +428,77 @@
     color: #fff;
 }
 
+/* ================= FACULTY SECTION RESPONSIVE FIX ================= */
+
+/* Desktop view logic */
+@media (min-width: 993px) {
+    .slider-viewport {
+        overflow: hidden;
+    }
+}
+
+/* Mobile & Tablet Fix: Enable Touch Scroll */
+@media (max-width: 992px) {
+    .slider-wrapper {
+        padding: 0; /* Remove side padding used for arrows */
+    }
+
+    .slider-viewport {
+        overflow-x: auto; /* Enable touch horizontal scroll */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* Momentum scroll for iOS */
+        padding: 20px 0;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+
+    /* Hide scrollbar for Chrome/Safari */
+    .slider-viewport::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide Navigation Arrows on Mobile/Tablet */
+    .slide-btn {
+        display: none !important;
+    }
+
+    /* Force row to stay horizontal and disable JS sliding */
+    .faculties-container {
+        display: flex !important;
+        width: max-content;
+        transform: none !important; /* Prevents button logic from snapping the view */
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 20px;
+    }
+
+    .faculty-card {
+        flex: 0 0 240px; /* Fixed width for consistent cards on mobile */
+        height: 320px; /* Adjusted height for mobile view */
+    }
+}
+/* New Mobile Touch Effect */
+@media (max-width: 992px) {
+    /* Trigger background color change on touch (active) */
+    .faculty-card:active .faculty-icon {
+        transform: scale(1.1) rotate(5deg);
+        background: linear-gradient(135deg, #1e3a8a, #f59e0b);
+        color: #fff;
+        transition: 0.2s ease; /* Faster transition for touch response */
+    }
+
+    /* Slight highlight on the whole card when tapped */
+    .faculty-card:active {
+        background-color: #f1f5f9;
+        border-color: #1e3a8a;
+        transform: translateY(-2px);
+        transition: 0.2s ease;
+    }
+}
+
+
+
+
+
 
 /* ================= OUR PROGRAMS ================= */
 .programs-section {
@@ -467,13 +548,18 @@
 
 /* CARD */
 .program-card {
-    flex: 0 0 calc(25% - 22.5px); /* 4 cards per row */
-    height: 200px;
-    background: white;
-    border-radius: 30px;
-    padding: 30px 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-    transition: 0.4s;
+    flex: 0 0 calc(25% - 22.5px); /* Shows 4 cards per view */
+    min-width: 250px;
+    height: 250px; /* Uniform height for all cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#all-row {
+    display: flex;
+    flex-wrap: nowrap; /* Forces one single horizontal line */
+    gap: 30px;
 }
 .program-card i {
     font-size: 50px;
@@ -501,18 +587,15 @@
     display: block;
 }
 .program-slider {
-    overflow: hidden;
+    overflow: hidden; /* Desktop view stays clipped */
+    width: 100%;
+    position: relative;
+    padding: 10px 0;
 }
-
 .program-slider-wrapper {
     position: relative;
     display: flex;
     align-items: center;
-}
-
-.program-slider {
-    overflow: hidden;
-    width: 100%;
 }
 
 .program-row {
@@ -524,25 +607,111 @@
 /* 4 cards desktop */
 .program-card {
     flex: 0 0 calc(25% - 22.5px);
+    min-width: 250px; /* Prevents cards from getting too small */
 }
 
-/* Tablet */
+
+/* Mobile & Tablet - Enable Touch Scroll */
 @media (max-width: 992px) {
+    .program-slider {
+        overflow-x: auto; /* Enable touch scroll */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* Smooth inertia on iOS */
+    }
+
+    /* Hide scrollbar for a clean look */
+    .program-slider::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .program-slider {
+        scrollbar-width: none;
+    }
+
+    /* Hide Arrows on Mobile */
+    .arrow {
+        display: none !important;
+    }
+
+    .program-row {
+        /* Remove the JS transform on mobile to allow natural scroll */
+        transform: none !important; 
+        width: max-content;
+        padding-left: 20px; /* Slight offset for first card */
+    }
+}
+
+.program-row {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.program-card {
+    flex: 0 0 calc(25% - 22.5px);
+    min-width: 250px;
+    height: 250px;
+    background: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+/* 2 Cards for smaller Laptops */
+@media (max-width: 1200px) and (min-width: 993px) {
     .program-card {
         flex: 0 0 calc(50% - 15px);
     }
 }
 
-/* Mobile */
+/* 1.5 Cards on Mobile to show there is more to scroll */
 @media (max-width: 576px) {
     .program-card {
-        flex: 0 0 100%;
+        flex: 0 0 75%;
+        min-width: unset;
+    }
+}
+
+/* ================= PROGRAM TABS MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+    .program-tabs {
+        display: flex; /* Force display on mobile */
+        justify-content: flex-start; /* Align to left for scrolling */
+        overflow-x: auto; /* Enable horizontal swipe for tabs */
+        white-space: nowrap; /* Keep buttons in one line */
+        padding: 10px 15px;
+        gap: 10px;
+        border-radius: 0; /* Full width look on mobile */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .program-tabs::-webkit-scrollbar {
+        display: none; /* Keep it clean */
+    }
+
+    .tab {
+        padding: 8px 20px;
+        font-size: 13px;
+        flex-shrink: 0; /* Prevent buttons from squishing */
+    }
+    
+    /* Ensure the content sections are visible */
+    .program-content.active {
+        display: block !important;
     }
 }
 
 /* Arrows */
+/* Update your .arrow class with these specific properties */
 .arrow {
     position: absolute;
+    top: 50%; /* Position at vertical center */
+    transform: translateY(-50%); /* Offset by half its height to perfectly center */
     background: #1e3a8a;
     color: white;
     border: none;
@@ -550,15 +719,208 @@
     height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
+    z-index: 100; /* Ensure it stays above the cards */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
 }
 
-.left { left: -20px; }
-.right { right: -20px; }
-
+.arrow.left { left: -22px; }
+.arrow.right { right: -22px; }
 .arrow:hover {
     background: #f59e0b;
 }
+
+/* ================= PROGRAM TABS RESPONSIVE FIX ================= */
+
+.program-tabs {
+    display: flex;
+    justify-content: center; /* Centered on Desktop */
+    gap: 12px;
+    background: #e5e7eb;
+    padding: 10px;
+    border-radius: 50px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 1000px; /* Limits width on large screens */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mobile & Tablet Fix (992px and below) */
+@media (max-width: 992px) {
+    .program-tabs {
+        justify-content: flex-start; /* Align to left for swiping */
+        overflow-x: auto; /* Enable horizontal swipe */
+        white-space: nowrap; /* Keep buttons in one line */
+        border-radius: 12px; /* Square edges look better on mobile */
+        padding: 12px 15px;
+        -webkit-overflow-scrolling: touch; /* Smooth swipe on iPhone */
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+
+    /* Hide scrollbar for Chrome/Safari */
+    .program-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab {
+        flex: 0 0 auto; /* Prevent buttons from shrinking */
+        padding: 10px 22px;
+        font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    .programs-section {
+        padding: 60px 20px; /* Reduced padding for more screen space */
+    }
+
+    .program-title {
+        font-size: 26px; /* Smaller title for mobile */
+        margin-bottom: 30px;
+    }
+}
+
+/* ================= TOUCH SCROLL FOR ALL PROGRAM CATEGORIES ================= */
+
+/* Desktop view: Clip the overflow for the JS slider to work */
+@media (min-width: 993px) {
+    .program-slider {
+        overflow: hidden;
+    }
+}
+
+/* Mobile & Tablet Fix: Enable Touch Scroll for ALL categories */
+@media (max-width: 992px) {
+    .program-slider-wrapper {
+        display: block; /* Remove flex to let slider take full width */
+    }
+
+    .program-slider {
+        overflow-x: auto; /* Enable touch horizontal scroll */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* Momentum scroll for iOS */
+        padding: 10px 0 20px 0;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+
+    /* Hide scrollbar for Chrome/Safari */
+    .program-slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide Navigation Arrows on Mobile/Tablet */
+    .arrow {
+        display: none !important;
+    }
+
+    /* Force rows to be horizontal and not wrap */
+    .program-row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        width: max-content;
+        transform: none !important; /* Disable JS slider movement on mobile */
+        padding-left: 15px; /* Visual gutter for first card */
+        padding-right: 15px; /* Visual gutter for last card */
+    }
+
+    .program-card {
+        flex: 0 0 280px; /* Fixed width for cards on mobile */
+        margin-right: 15px;
+    }
+}
+
+
+
+
+
+
+/* ================= ACCREDITATION SECTION - IMAGE BACKGROUND ================= */
+
+.accreditation-section {
+    padding: 50px 0;
+    /* 1. Add your image here. The linear-gradient creates the dark blue tint */
+    background: linear-gradient(rgba(26, 54, 104, 0.8), rgba(26, 54, 104, 0.8)), 
+                url('OIP.jpg'); 
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed; /* This creates the professional parallax effect */
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.accreditation-section h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* The Slider Container */
+.logo-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
+/* The Moving Track */
+.logo-track {
+    display: flex;
+    width: max-content; /* Critical: Allows the row to extend beyond screen width */
+    gap: 80px; 
+    animation: infiniteScroll 40s linear infinite;
+}
+
+/* Pause when user hovers */
+.logo-slider:hover .logo-track {
+    animation-play-state: paused;
+}
+
+.logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    text-align: center;
+}
+
+.logo-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: 0.3s ease;
+}
+
+.logo-item p {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+/* Infinite Scroll Animation */
+@keyframes infiniteScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Animates to exactly half the track width */
+}
+
+
+
+
+
+
 /* ================= FOOTER STYLE ================= */
 
 .university-footer {
@@ -911,33 +1273,69 @@ nav {
 
     <h2 class="program-title">OUR PROGRAMS</h2>
 
-    <!-- Top Tabs -->
     <div class="program-tabs">
-        <button class="tab active" onclick="showProgram('diploma', this)">Diploma</button>
-        <button class="tab" onclick="showProgram('ug', this)">Undergraduate</button>
-        <button class="tab" onclick="showProgram('pg', this)">Postgraduate</button>
-        <button class="tab" onclick="showProgram('Certificate', this)">Certificate</button>
-        <button class="tab" onclick="showProgram('phd', this)">Ph.D.</button>
+    <button class="tab active" onclick="showProgram('all', this)">All</button>
+    <button class="tab" onclick="showProgram('diploma', this)">Diploma</button>
+    <button class="tab" onclick="showProgram('ug', this)">Undergraduate</button>
+    <button class="tab" onclick="showProgram('pg', this)">Postgraduate</button>
+    <button class="tab" onclick="showProgram('Certificate', this)">Certificate</button>
+    <button class="tab" onclick="showProgram('phd', this)">Ph.D.</button>
+</div>
+
+<div class="program-content active" id="all">
+    <div class="program-slider-wrapper">
+        <button class="arrow left" onclick="slideCards('all', -1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="program-slider">
+            <div class="program-row" id="all-row">
+                <div class="program-card"><i class="fas fa-gears"></i><h3>Engineering</h3></div>
+                <div class="program-card"><i class="fas fa-pills"></i><h3>Pharmacy</h3></div>
+                <div class="program-card"><i class="fas fa-user-nurse"></i><h3>Nursing</h3></div>
+                <div class="program-card"><i class="fas fa-flask-vial"></i><h3>Science</h3></div>
+                <div class="program-card"><i class="fas fa-chart-line"></i><h3>Commerce & Management</h3></div>
+                <div class="program-card"><i class="fas fa-stethoscope"></i><h3>MBBS</h3></div>
+                <div class="program-card"><i class="fas fa-leaf"></i><h3>Ayurveda</h3></div>
+                <div class="program-card"><i class="fas fa-mortar-pestle"></i><h3>Homeopathy</h3></div>
+                <div class="program-card"><i class="fas fa-palette"></i><h3>Arts</h3></div>
+                <div class="program-card"><i class="fas fa-scale-balanced"></i><h3>Law</h3></div>
+                <div class="program-card"><i class="fas fa-laptop-code"></i><h3>IT & CS</h3></div>
+                <div class="program-card"><i class="fas fa-chalkboard-teacher"></i><h3>Education</h3></div>
+                <div class="program-card"><i class="fas fa-hand-holding-medical"></i><h3>Physiotherapy</h3></div>
+                <div class="program-card"><i class="fas fa-pen-ruler"></i><h3>Design and Communication</h3></div>
+                <div class="program-card"><i class="fas fa-stethoscope"></i><h3>Medicine</h3></div>
+                <div class="program-card"><i class="fas fa-spa"></i><h3>Yoga</h3></div>
+                <div class="program-card"><i class="fas fa-spa"></i><h3>Panchkarma Therapist</h3></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="slideCards('all', 1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
+</div>
 
     <!-- Diploma Programs -->
-    <div class="program-content active" id="diploma">
-        <div class="program-row">
-            <div class="program-card">
-                <i class="fas fa-gears"></i>
-                <h3>Engineering</h3>
-            </div>
+    <div class="program-content" id="diploma">
+        <div class="program-slider-wrapper">
+            <div class="program-slider">
+                <div class="program-row">
+                    <div class="program-card">
+                        <i class="fas fa-gears"></i>
+                        <h3>Engineering</h3>
+                    </div>
 
-            <div class="program-card">
-               <i class="fas fa-pills"></i>
-                <h3>Pharmacy</h3>
-            </div>
+                    <div class="program-card">
+                    <i class="fas fa-pills"></i>
+                        <h3>Pharmacy</h3>
+                    </div>
 
-            <div class="program-card">
-               <i class="fas fa-user-nurse"></i>
-                <h3>Nursing</h3>
+                    <div class="program-card">
+                    <i class="fas fa-user-nurse"></i>
+                        <h3>Nursing</h3>
+                    </div>
+                </div>
             </div>
-         </div>
+        </div> 
     </div>
 
     <!-- UG Programs -->
@@ -1081,14 +1479,18 @@ nav {
 </div>
     <!-- Certificate Programs -->
       <div class="program-content" id="Certificate">
-        <div class="program-row">
-            <div class="program-card">
-                 <i class="fas fa-spa"></i>
-                <h3>Panchkarma Therapist</h3>
-            </div>
-             <div class="program-card">
-                 <i class="fas fa-person-praying"></i>
-                <h3>Yoga</h3>
+        <div class="program-slider-wraper">
+            <div class="program-slider">
+                <div class="program-row">
+                    <div class="program-card">
+                        <i class="fas fa-spa"></i>
+                        <h3>Panchkarma Therapist</h3>
+                    </div>
+                    <div class="program-card">
+                        <i class="fas fa-person-praying"></i>
+                        <h3>Yoga</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1149,6 +1551,49 @@ nav {
 
     </div>
 </div>
+</section>
+
+
+<!-- ================= ACCREDITATION AUTO SLIDER ================= -->
+<section class="accreditation-section">
+    <h2>ACCREDITATION AND RECOGNITION</h2>
+
+    <div class="logo-slider">
+        <div class="logo-track">
+            <div class="logo-item"><img src="101.png" alt="UGC"><p>University Grants Commission</p></div>
+            <div class="logo-item"><img src="2023.png" alt="Govt Gujarat"><p>Education Department Govt. of Gujarat</p></div>
+            <div class="logo-item"><img src="2023.png" alt="MoE"><p>Ministry of Education</p></div>
+            <div class="logo-item"><img src="204.png" alt="AICTE"><p>All India Council for Technical Education</p></div>
+            <div class="logo-item"><img src="205.png" alt="BCI"><p>Bar Council of India</p></div>
+            <div class="logo-item"><img src="106.png" alt="PCI"><p>Pharmacy Council of India</p></div>
+            <div class="logo-item"><img src="207.png" alt="Indian Nursing Council"><p>Indian Nursing Council</p> </div>
+            <div class="logo-item"><img src="108.png" alt="National Commission for Indian System of Medicine"><p>National Commission for Indian System of Medicine</p> </div>
+            <div class="logo-item"><img src="109.png" alt="National Council For Teacher Education"><p>National Council For Teacher Education</p></div>
+            <div class="logo-item"><img src="110.png" alt="National Commission for Homeopathy"><p>National Commission for Homeopathy</p></div>
+            <div class="logo-item"><img src="211.png" alt="Association of Indian Universities"><p>Association of Indian Universities</p></div>
+            <div class="logo-item"><img src="112.png" alt="National Medical Commission India"><p>National Medical Commission India</p></div>
+            <div class="logo-item"><img src="213.png" alt="Gujarat State Council For Physiotherapy"><p>Gujarat State Council For Physiotherapy</p></div>
+
+
+
+            <div class="logo-item"><img src="101.png" alt="UGC"><p>University Grants Commission</p></div>
+            <div class="logo-item"><img src="2023.png" alt="Govt Gujarat"><p>Education Department Govt. of Gujarat</p></div>
+            <div class="logo-item"><img src="2023.png" alt="MoE"><p>Ministry of Education</p></div>
+            <div class="logo-item"><img src="204.png" alt="AICTE"><p>All India Council for Technical Education</p></div>
+            <div class="logo-item"><img src="205.png" alt="BCI"><p>Bar Council of India</p></div>
+            <div class="logo-item"><img src="106.png" alt="PCI"><p>Pharmacy Council of India</p></div>
+            <div class="logo-item"><img src="207.png" alt="Indian Nursing Council"><p>Indian Nursing Council</p> </div>
+            <div class="logo-item"><img src="108.png" alt="National Commission for Indian System of Medicine"><p>National Commission for Indian System of Medicine</p> </div>
+            <div class="logo-item"><img src="109.png" alt="National Council For Teacher Education"><p>National Council For Teacher Education</p></div>
+            <div class="logo-item"><img src="110.png" alt="National Commission for Homeopathy"><p>National Commission for Homeopathy</p></div>
+            <div class="logo-item"><img src="211.png" alt="Association of Indian Universities"><p>Association of Indian Universities</p></div>
+            <div class="logo-item"><img src="112.png" alt="National Medical Commission India"><p>National Medical Commission India</p></div>
+            <div class="logo-item"><img src="213.png" alt="Gujarat State Council For Physiotherapy"><p>Gujarat State Council For Physiotherapy</p></div>
+
+
+
+        </div>
+    </div>
 </section>
 
    <!-- ================= FOOTER ================= -->
@@ -1235,22 +1680,23 @@ tabs.forEach(tab => {
         selected.classList.add('active');
     });
 });
-/* ================= FACULTY SLIDER FUNCTIONALITY ================= */
-/* ================= FACULTY SLIDER ================= */
 
+
+
+/* ================= FACULTY SLIDER FUNCTIONALITY ================= */
 let facultyPosition = 0;
 
 function moveSlider(direction) {
+    // Prevent button sliding on mobile/tablet
+    if (window.innerWidth <= 992) return;
 
     const row = document.getElementById("facultySlider");
     const cards = row.querySelectorAll(".faculty-card");
+    if (!cards.length) return;
 
-    const cardWidth = cards[0].offsetWidth + 30;
+    const cardWidth = cards[0].offsetWidth + 30; // Card width + gap
 
-    const visibleCards =
-        window.innerWidth > 992 ? 4 :
-        window.innerWidth > 576 ? 2 : 1;
-
+    const visibleCards = window.innerWidth > 992 ? 4 : 2;
     const maxIndex = cards.length - visibleCards;
 
     facultyPosition += direction;
@@ -1258,54 +1704,68 @@ function moveSlider(direction) {
     if (facultyPosition < 0) facultyPosition = 0;
     if (facultyPosition > maxIndex) facultyPosition = maxIndex;
 
-    row.style.transform =
-        `translateX(-${facultyPosition * cardWidth}px)`;
+    row.style.transform = `translateX(-${facultyPosition * cardWidth}px)`;
 }
-/* Program Functionality */
-function showProgram(id, el) {
 
-    document.querySelectorAll('.program-content')
-        .forEach(content => content.classList.remove('active'));
 
-    document.querySelectorAll('.tab')
-        .forEach(tab => tab.classList.remove('active'));
 
-    document.getElementById(id).classList.add('active');
-    el.classList.add('active');
-}
+
 /* ================= PROGRAM SLIDER STATE ================= */
 let sliderPositions = {
+    all: 0,
+    diploma: 0, // Added
     ug: 0,
     pg: 0,
+    Certificate: 0, // Added
     phd: 0
-}
+};
 
+// Update the slideCards function to ignore mobile touch areas
 function slideCards(sectionId, direction) {
+    if (window.innerWidth <= 992) return; // Ignore JS logic on mobile
 
     const row = document.getElementById(sectionId + "-row");
     if (!row) return;
 
     const cards = row.querySelectorAll('.program-card');
-    if (!cards.length) return;
+    const cardWidth = cards[0].offsetWidth + 30; 
 
-    const cardWidth = cards[0].offsetWidth + 30;
-
-    const visibleCards =
-        window.innerWidth > 992 ? 4 :
-        window.innerWidth > 576 ? 2 : 1;
-
+    const visibleCards = window.innerWidth > 1200 ? 4 : 2;
     const maxIndex = Math.max(0, cards.length - visibleCards);
 
     sliderPositions[sectionId] += direction;
 
-    if (sliderPositions[sectionId] < 0)
-        sliderPositions[sectionId] = 0;
+    if (sliderPositions[sectionId] < 0) sliderPositions[sectionId] = 0;
+    if (sliderPositions[sectionId] > maxIndex) sliderPositions[sectionId] = maxIndex;
 
-    if (sliderPositions[sectionId] > maxIndex)
-        sliderPositions[sectionId] = maxIndex;
+    row.style.transform = `translateX(-${sliderPositions[sectionId] * cardWidth}px)`;
+}
 
-    row.style.transform =
-        `translateX(-${sliderPositions[sectionId] * cardWidth}px)`;
+
+
+function showProgram(id, el) {
+    // Reset all tabs and content
+    document.querySelectorAll('.program-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    // Activate selected
+    const selectedContent = document.getElementById(id);
+    if (selectedContent) selectedContent.classList.add('active');
+    el.classList.add('active');
+
+    // Mobile specific: Center the clicked tab in the scroll view
+    el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+    // Reset slider positions for the active section
+    if (sliderPositions[id] !== undefined) {
+        const row = document.getElementById(id + "-row");
+        if (row) row.style.transform = `translateX(0)`;
+        sliderPositions[id] = 0;
+        
+        // Reset the horizontal scroll of the cards container
+        const container = document.querySelector(`#${id} .program-slider`);
+        if (container) container.scrollLeft = 0;
+    }
 }
 </script>
 
